@@ -144,10 +144,12 @@ public class JpaResultMapper extends ResultMapper {
      * value was not a primitive type).
      */
     private Class<?> convertToBoxTypeIfPrimitive(Class<?> primitiveType) {
-        if (PRIMITIVE_TO_BOX_TYPE_MAP.containsKey(primitiveType)) {
-            return PRIMITIVE_TO_BOX_TYPE_MAP.get(primitiveType);
-        } else {
-            return primitiveType;
+    	Class<?> classType = PRIMITIVE_TO_BOX_TYPE_MAP.get(primitiveType);
+    	
+        if (classType==null) {
+        	classType = primitiveType;
         }
+    
+        return classType;
     }
 }
